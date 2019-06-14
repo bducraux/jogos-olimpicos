@@ -49,7 +49,6 @@ class Competicao(models.Model, BaseModel):
 class Atleta(models.Model):
 
     nome = models.CharField("Nome do atleta", max_length=200)
-    competicao = models.ForeignKey(Competicao, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nome
@@ -60,12 +59,12 @@ class Atleta(models.Model):
 
 class Resultado(models.Model):
 
-    atleta = models.ForeignKey(Atleta, on_delete=models.CASCADE)
     competicao = models.ForeignKey(Competicao, on_delete=models.CASCADE)
+    atleta = models.ForeignKey(Atleta, on_delete=models.CASCADE)
     resultado = models.DecimalField("Valor do resultado obtido pelo atleta", max_digits=8, decimal_places=3)
 
     def __str__(self):
-        return "%s - %s - %s" % (self.id_competicao, self.id_atleta, self.resultado)
+        return "%s - %s - %s" % (self.competicao, self.atleta, self.resultado)
 
     class Meta:
         ordering = ('id',)

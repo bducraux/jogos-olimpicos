@@ -11,7 +11,7 @@ class CompeticaoSerializer(serializers.ModelSerializer):
 class AtletaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Atleta
-        fields = ('id', 'nome', 'competicao')
+        fields = ('id', 'nome')
 
 
 class ResultadoSerializer(serializers.ModelSerializer):

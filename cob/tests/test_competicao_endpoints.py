@@ -47,7 +47,7 @@ class CompeticaoTest(BaseApiTest):
 
     def test_competicao_recuperar_uma_valida(self):
         response = self.client.get(
-            reverse('competicao-detail', kwargs={'pk': self.competicao.id}))
+            reverse('competicao-detail', kwargs={'pk': self.competicao.pk}))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def est_competicao_recuperar_uma_invalida(self):
@@ -73,7 +73,7 @@ class CompeticaoTest(BaseApiTest):
 
     def test_competicao_update_valido(self):
         response = self.client.put(
-            reverse('competicao-detail', kwargs={'pk': self.competicao.id}),
+            reverse('competicao-detail', kwargs={'pk': self.competicao.pk}),
             data=json.dumps(self.payload_valido),
             content_type='application/json'
         )
@@ -81,7 +81,7 @@ class CompeticaoTest(BaseApiTest):
 
     def test_competicao_update_invalido(self):
         response = self.client.put(
-            reverse('competicao-detail', kwargs={'pk': self.competicao.id}),
+            reverse('competicao-detail', kwargs={'pk': self.competicao.pk}),
             data=json.dumps(self.payload_invalido),
             content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -92,7 +92,7 @@ class CompeticaoTest(BaseApiTest):
         }
 
         response = self.client.patch(
-            reverse('competicao-detail', kwargs={'pk': self.competicao.id}),
+            reverse('competicao-detail', kwargs={'pk': self.competicao.pk}),
             data=json.dumps(payload),
             content_type='application/json'
         )
@@ -115,7 +115,7 @@ class CompeticaoTest(BaseApiTest):
             'status': 'encerradaaaaa'
         }
         response = self.client.patch(
-            reverse('competicao-detail', kwargs={'pk': self.competicao.id}),
+            reverse('competicao-detail', kwargs={'pk': self.competicao.pk}),
             data=json.dumps(payload),
             content_type='application/json'
         )
@@ -126,7 +126,7 @@ class CompeticaoTest(BaseApiTest):
             'condicao_para_vitoria': 'aaa'
         }
         response = self.client.patch(
-            reverse('competicao-detail', kwargs={'pk': self.competicao.id}),
+            reverse('competicao-detail', kwargs={'pk': self.competicao.pk}),
             data=json.dumps(payload),
             content_type='application/json'
         )

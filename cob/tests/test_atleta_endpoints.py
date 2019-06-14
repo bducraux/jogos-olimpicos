@@ -43,7 +43,7 @@ class AtletaTest(BaseApiTest):
 
     def test_atleta_recuperar_uma_valida(self):
         response = self.client.get(
-            reverse('atleta-detail', kwargs={'pk': self.atleta.id}))
+            reverse('atleta-detail', kwargs={'pk': self.atleta.pk}))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def est_atleta_recuperar_uma_invalida(self):
@@ -69,7 +69,7 @@ class AtletaTest(BaseApiTest):
 
     def test_atleta_update_valido(self):
         response = self.client.put(
-            reverse('atleta-detail', kwargs={'pk': self.atleta.id}),
+            reverse('atleta-detail', kwargs={'pk': self.atleta.pk}),
             data=json.dumps(self.payload_valido),
             content_type='application/json'
         )
@@ -88,7 +88,7 @@ class AtletaTest(BaseApiTest):
         }
 
         response = self.client.patch(
-            reverse('atleta-detail', kwargs={'pk': self.atleta.id}),
+            reverse('atleta-detail', kwargs={'pk': self.atleta.pk}),
             data=json.dumps(payload),
             content_type='application/json'
         )

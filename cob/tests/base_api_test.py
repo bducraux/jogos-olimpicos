@@ -6,7 +6,7 @@ class BaseApiTest(APITestCase):
 
     def setUp(self):
         # cria usuário para teste
-        admin_password = "corr3ct_p4ssw0rd"
+        admin_password = 'corr3ct_p4ssw0rd'
         self.user = User.objects.create_user(
             username='admin_test', email='admin_test@test.com', password=admin_password)
         # Inicializa Client

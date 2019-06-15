@@ -74,4 +74,3 @@ class CompeticaoTest(TestCase):
             resultado='25.12',
             unidade='m'
         )
-

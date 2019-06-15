@@ -8,18 +8,15 @@ import json
 
 class CompeticaoTest(BaseApiTest):
 
-    # seta o endpoint
-    path = "/competicao"
-
     def setUp(self):
         super().setUp()
 
         # cria competicoes
         self.competicao = Competicao.objects.create(
-            nome="Dardos Eliminatoria Teste", condicao_para_vitoria="maior_de_tres"
+            nome='Dardos Eliminatoria Teste', condicao_para_vitoria='maior_de_tres'
         )
         self.competicao2 = Competicao.objects.create(
-            nome="Cem Metros Teste", condicao_para_vitoria="menor"
+            nome='Cem Metros Teste', condicao_para_vitoria='menor'
         )
 
         # payload válido para create e update

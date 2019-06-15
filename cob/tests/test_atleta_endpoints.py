@@ -8,9 +8,6 @@ import json
 
 class AtletaTest(BaseApiTest):
 
-    # seta o endpoint
-    path = "/atletao"
-
     def setUp(self):
         super().setUp()
 

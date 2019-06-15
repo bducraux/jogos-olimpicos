@@ -4,10 +4,6 @@ from django.contrib.auth.models import User
 
 class BaseApiTest(APITestCase):
 
-    @property
-    def path(self):
-        raise NotImplementedError()
-
     def setUp(self):
         # cria usuário para teste
         admin_password = "corr3ct_p4ssw0rd"

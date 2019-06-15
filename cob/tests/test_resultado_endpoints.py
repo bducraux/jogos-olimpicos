@@ -8,37 +8,36 @@ import json
 
 class ResultadoTest(BaseApiTest):
 
-    # seta o endpoint
-    path = "/atleta"
-
     def setUp(self):
         super().setUp()
 
         # cria competicao
         self.competicao = Competicao.objects.create(
-            nome="Dardos Eliminatoria Teste", condicao_para_vitoria="maior_de_tres"
+            nome='Dardos Eliminatoria Teste', condicao_para_vitoria='maior_de_tres'
         )
         # cria atleta
         self.atleta = Atleta.objects.create(
-            nome="Teste"
+            nome='Teste'
         )
         
         # cria resultados
-        self.resultado1 = Resultado.objects.create(competicao=self.competicao, atleta=self.atleta, resultado='20.140')
-        self.resultado2 = Resultado.objects.create(competicao=self.competicao, atleta=self.atleta, resultado='22.11')
+        self.resultado1 = Resultado.objects.create(competicao=self.competicao, atleta=self.atleta, resultado='20.140', unidade='m')
+        self.resultado2 = Resultado.objects.create(competicao=self.competicao, atleta=self.atleta, resultado='22.11', unidade='m')
 
         # payload válido para create e update
         self.payload_valido = {
             'competicao': self.competicao.id,
             'atleta': self.atleta.id,
-            'resultado': '27.02'
+            'resultado': '27.02',
+            'unidade': 'm'
         }
 
         # payload inválido para create e update
         self.payload_invalido = {
             'competicao': '',
             'atleta': self.atleta.id,
-            'resultado': '27.02'
+            'resultado': '27.02',
+            'unidade': 'm'
         }
 
     def test_resultado_recuperar_todas(self):
@@ -114,6 +113,17 @@ class ResultadoTest(BaseApiTest):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_resultado_patch_unidade_invalida(self):
+        payload = {
+            'unidade': 'h'
+        }
+        response = self.client.patch(
+            reverse('resultado-detail', kwargs={'pk': self.resultado1.pk}),
+            data=json.dumps(payload),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_resultado_delete_valido(self):
         response = self.client.delete(

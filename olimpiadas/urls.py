@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from cob.views import CompeticaoView, AtletaView, ResultadoView
+from cob.views import CompeticaoView, AtletaView, ResultadoView, RankingView
 from rest_framework import routers
 
 
@@ -27,5 +27,6 @@ router.register(r'resultado', ResultadoView)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
+    path('ranking/<int:pk>', RankingView.as_view()),
     path('api-auth/', include('rest_framework.urls'))
 ]

@@ -30,4 +30,5 @@ http://127.0.0.1:8000/admin/
 `python manage.py test`
 
 # Documentação da API
+com o servidor rodando acesse: 
 `http://127.0.0.1:8000/docs/`

@@ -17,4 +17,14 @@ class AtletaSerializer(serializers.ModelSerializer):
 class ResultadoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Resultado
-        fields = ('id', 'atleta', 'competicao', 'resultado')
+        fields = ('competicao', 'atleta', 'resultado', 'unidade')
+        read_only_fields = ('tentativa',)
+
+
+class RankingSerializer(serializers.ModelSerializer):
+    atleta = serializers.StringRelatedField()
+    competicao = serializers.StringRelatedField()
+
+    class Meta:
+        model = Resultado
+        fields = ('competicao', 'atleta', 'resultado', 'unidade')
